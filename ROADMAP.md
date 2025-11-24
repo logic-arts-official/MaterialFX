@@ -4,6 +4,58 @@
 
 A more complete roadmap is now available at [Trello](https://trello.com/b/RqRwBIRh/materialfx-roadmap)
 
+## Pros and Cons of MaterialFX
+
+### Pros ✅
+
+- **Material Design Compliant**: Components follow Google's Material Design guidelines, providing a modern and consistent UI
+- **Comprehensive Component Library**: Offers restyled JavaFX controls plus unique components (Stepper, enhanced TableViews, ComboBoxes, etc.)
+- **Rich Utilities**: Provides utility classes for JavaFX and Java (NodeUtils, ColorUtils, StringUtils, etc.)
+- **Active Development**: Regular updates and bug fixes from an engaged maintainer
+- **Well Documented**: Extensive JavaDoc documentation available at javadoc.io
+- **Open Source**: LGPL v3 license allows use in commercial projects
+- **Community Support**: Active discussions and issue tracking on GitHub
+- **SceneBuilder Integration**: Components can be used directly in SceneBuilder
+- **Flexible Theming**: New theming system using UserAgentBuilder for customizable styling
+
+### Cons ⚠️
+
+- **JavaFX Dependency**: Inherits all JavaFX limitations and quirks
+- **Learning Curve**: New theming system requires understanding of CSS fragment assembly
+- **Breaking Changes**: Major version updates may require code migration
+- **Manual Theme Management**: Themes must be explicitly set by developers (not automatic)
+- **Resource Deployment Overhead**: Asset deployment to disk may add initialization time
+- **Limited Backwards Compatibility**: Newer versions may not support older JavaFX versions
+- **SceneBuilder Integration Limitations**: Auto-styling in SceneBuilder can be fragile and error-prone
+
+## Backlog and Implementation Status
+
+### Completed Features ✓
+
+- MFXButton (multiple variants)
+- MFXCheckBox
+- MFXRadioButton
+- MFXToggleButton
+- MFXComboBox (completely redesigned)
+- MFXTextField and variants
+- MFXPasswordField
+- MFXListView (with virtualization)
+- MFXTableView (completely redesigned with VirtualizedFX)
+- MFXScrollPane
+- MFXSlider
+- MFXProgressBar / MFXProgressSpinner
+- MFXDatePicker
+- MFXStepper
+- MFXPagination
+- MFXContextMenu
+- MFXTooltip
+- MFXDialog and MFXStageDialog
+- MFXNotifications system
+- MFXFilterPane
+- Ripple Effect Generator
+- Virtual Flow and Virtualization framework
+- Advanced Theming System with UserAgentBuilder
+
 ## Priority Legend
 
 - **HIGH**: you can expect the feature in the next major version
