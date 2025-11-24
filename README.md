@@ -210,22 +210,45 @@ the previous version, so I thought a new logo would have been a good idea.
 
 ## Getting Started
 
-In this section you can learn what do you need to use my library in your project or see a preview/demo which I'm
-planning to release as runtime images here on github.
+### Quick Setup for Developers
 
-### Build
+Want to contribute or explore MaterialFX? Follow these steps to get up and running quickly:
 
-To build MaterialFX, execute the following command:
+1. **Prerequisites**
+    - Java 11 or higher (JDK 17 recommended for development)
+    - Git
 
-    gradlew build
+2. **Clone the Repository**
+   ```bash
+   git clone https://github.com/palexdev/MaterialFX.git
+   cd MaterialFX
+   ```
 
-To run the main demo, execute the following command:
+3. **Build the Project**
+   ```bash
+   ./gradlew build
+   ```
+   On Windows, use `gradlew.bat build`
 
-    gradlew run
+4. **Run the Demo Application**
+   ```bash
+   ./gradlew run
+   ```
+   This will launch the MaterialFX demo app showcasing all available components.
 
-**NOTE**: MaterialFX requires **Java 11** and above.
+5. **Import into Your IDE**
+    - **IntelliJ IDEA**: File → Open → Select the MaterialFX directory
+    - **Eclipse**: File → Import → Gradle → Existing Gradle Project
+    - **VS Code**: Open the folder and install the Java Extension Pack
 
-### Usage
+6. **Start Developing**
+    - Main library code: `materialfx/src/main/java`
+    - Demo application: `demo/src/main/java`
+    - Resources and CSS: `materialfx/src/main/resources`
+
+### Using MaterialFX in Your Project
+
+**Requirements**: MaterialFX requires **Java 11** and above.
 
 ###### Gradle
 
@@ -242,7 +265,6 @@ dependencies {
 ###### Maven
 
 ```xml
-
 <dependency>
     <groupId>io.github.palexdev</groupId>
     <artifactId>materialfx</artifactId>
