@@ -1,19 +1,10 @@
 <!--@formatter:off-->
-[![HitCount](http://hits.dwyl.com/PAlex404/MaterialFX.svg)](http://hits.dwyl.com/PAlex404/MaterialFX)
-![GitHub Workflow Status](https://github.com/palexdev/materialfx/actions/workflows/gradle.yml/badge.svg)
-![Sonatype Nexus (Releases)](https://img.shields.io/nexus/r/io.github.palexdev/materialfx?server=https%3A%2F%2Fs01.oss.sonatype.org&style=flat-square)
-[![javadoc](https://javadoc.io/badge2/io.github.palexdev/materialfx/javadoc.svg?logo=java)](https://javadoc.io/doc/io.github.palexdev/materialfx)
-![GitHub issues](https://img.shields.io/github/issues-raw/palexdev/materialfx?style=flat-square)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/palexdev/materialfx?style=flat-square)
-![GitHub](https://img.shields.io/github/license/palexdev/materialfx?style=flat-square)
-[![JFXCentral](https://img.shields.io/badge/Find_me_on-JFXCentral-blue?logo=googlechrome&logoColor=white)](https://www.jfx-central.com/libraries/materialfx)
----
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/palexdev/MaterialFX">
-    <img src=https://imgur.com/7NdnoFl.png" alt="Logo">
+  <a href="https://github.com/logic-arts-official/MaterialFX">
+    <img src="https://imgur.com/7NdnoFl.png" alt="Logo">
   </a>
 </p>
 
@@ -23,14 +14,10 @@
 <p align="center">
     MaterialFX is an open source Java library which provides material design components for JavaFX
     <br />
-    <a href="https://github.com/palexdev/MaterialFX/wiki"><strong>Explore the wiki »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/palexdev/MaterialFX/releases">Download Latest Demo</a>
+    <a href="https://github.com/logic-arts-official/MaterialFX/issues">Report Bug</a>
     ·
-    <a href="https://github.com/palexdev/MaterialFX/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/palexdev/MaterialFX/issues">Request Feature</a>
+    <a href="https://github.com/logic-arts-official/MaterialFX/issues">Request Feature</a>
 </p>
 
 <!-- TABLE OF CONTENTS -->
@@ -46,15 +33,12 @@
     * [Usage](#usage)
         * [Gradle](#gradle)
         * [Maven](#maven)
-* [Documentation](#documentation)
 * [Changelog](#changelog)
-* [Roadmap](#roadmap)
 * [Theming System](#theming-system)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
-* [Donation](#donation)
-* [Supporters](#supporters)
+* [Attribution](#attribution)
 
 <!-- IMPORTANT NOTES -->
 
@@ -220,7 +204,7 @@ Want to contribute or explore MaterialFX? Follow these steps to get up and runni
 
 2. **Clone the Repository**
    ```bash
-   git clone https://github.com/palexdev/MaterialFX.git
+   git clone https://github.com/logic-arts-official/MaterialFX.git
    cd MaterialFX
    ```
 
@@ -272,27 +256,11 @@ dependencies {
 </dependency>
 ```
 
-<!-- DOCUMENTATION -->
-
-## Documentation
-
-You can read MaterialFX's documentation at [javadoc.io](https://javadoc.io/doc/io.github.palexdev/materialfx)
-
 <!-- CHANGELOG -->
 
 ## Changelog
 
-See the [CHANGELOG](https://github.com/palexdev/MaterialFX/blob/main/CHANGELOG.md) file for a list of changes per
-version.
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-See the [Open Issues](https://github.com/palexdev/MaterialFX/issues) for a list of proposed features (and known issues)
-.  
-See the [ROADMAP](https://github.com/palexdev/MaterialFX/blob/main/ROADMAP.md) for a list of implemented and upcoming
-features.
+See the [CHANGELOG](CHANGELOG.md) file for a list of changes per version.
 
 <!-- THEMING SYSTEM -->
 
@@ -330,7 +298,7 @@ The two most annoying issues caused by this system are:
 
 **End of the rant**  
 How can I fix it? I asked myself many many times.  
-Recently I've been working on a rewrite of [MaterialFX](https://github.com/palexdec/MaterialFX/tree/rewrite), this new
+Recently I've been working on a rewrite of MaterialFX, this new
 version will have controls based on the new Material Design 3 Guidelines, will implement modular themes thanks to the
 usage of [SASS](https://sass-lang.com/) and a Theming API that will let user change themes, implement new ones, very easily.  
 So the idea is to backport at least the concept on the main branch at least until the rewrite is done.
@@ -385,19 +353,18 @@ nodes or scenes.
   **You have to add the Themes on every separate scene**.
   To simplify things, MaterialFX automatically applies the Themes on its dialogs and popups, but since now they
   are added to the `getStylesheets()` list it's easy to remove them and define your own
-- ~~The last con I can think of is SceneBuilder. As of now there is no support for it, I have some ideas on how to style
-  controls inside of it though. The issue is that even if I figure out a way,~~ I doubt the system will be flexible
-  enough.
-  ~~What I mean is, I can probably set the default themes on the SceneBuilder' scene,~~ but it's very unlikely there
-  will
-  be a way to choose which themes/stylesheets will be applied.  
-  Since version 11.15.0, MaterialFX controls are capable of detecting if they are being used in SceneBuilder and can
-  automatically
-  style themselves. From my little testings, it seems that this doesn't break the styling system in any way, I was able
-  to style a button
-  by adding a custom stylesheet on itself or on its parent. There's also an emergency system to completely shut down the
-  SceneBuilder integration, more info
-  here: [Themable](https://github.com/palexdev/MaterialFX/blob/main/materialfx/src/main/java/io/github/palexdev/materialfx/controls/base/Themable.java)
+- The little buggers didn't think of nested custom controls. For example, if a custom control(parent) has a skin that
+   uses other custom controls(children), the user agent of the parent will be **completely ignored** by the children,
+   the result is a bunch of children that **cannot** be styled in any way unless you create a custom skin yourself.
+   A fix I implemented for this in the past, was to override inline the `getUserAgentStylesheet()` method of each
+   children node to use the one of the parent, and even this drastic solution was working half the time (didn't work in
+   some user cases)
+2) For some reason, sometimes stylesheets provided by the user were half or completely **ignored** leading to half/not
+   styled(as intended) custom controls. This was the most annoying issue, as the causes would vary from case to case,
+   not always there was an easy/feasible solution, a nightmare, really
+
+**End of the rant**  
+How can I fix it? I asked myself many many times.
 </details>
 <br></br>
 <details>
@@ -473,7 +440,7 @@ if needed, which surely introduces some overhead. Not only that, for the previou
 MaterialFX controls are capable of detecting if they are being used in SceneBuilder and can automatically style themselves.
 From my little testings, it seems that this doesn't break the styling system in any way.
 I was able to style a button by adding a custom stylesheet on itself or on its parent.
-There's also an emergency system to completely shut down the SceneBuilder integration, more info here: [Themable](https://github.com/palexdev/MaterialFX/blob/main/materialfx/src/main/java/io/github/palexdev/materialfx/controls/base/Themable.java)
+There's also an emergency system to completely shut down the SceneBuilder integration, more info here: [Themable](materialfx/src/main/java/io/github/palexdev/materialfx/controls/base/Themable.java)
 
 </details>
 
@@ -500,47 +467,15 @@ Distributed under the GNU LGPLv3 License. See `LICENSE` for more information.
 
 ## Contact
 
-Alex - alessandro.parisi406@gmail.com
-<br></br>
-[Discussions](https://github.com/palexdev/MaterialFX/discussions)
-<br></br>
-Project Link: [https://github.com/palexdev/MaterialFX](https://github.com/palexdev/MaterialFX)
+For questions, issues, or feature requests, please use the [GitHub Issues](https://github.com/logic-arts-official/MaterialFX/issues) page.
 
-<!-- DONATION -->
+<!-- ATTRIBUTION -->
 
-#### Donation
+## Attribution
 
-It's been more than a year since I started developing MaterialFX. Implementing cool looking, fully functional controls,
-introducing new components and features as well as providing many utilities for JavaFX and Java is really hard,
-especially considering that developing for JavaFX also means to deal with its closeness, its bugs, its annoying
-design decisions. Many times I've honestly been on the verge of giving up because sometimes it's really too much
-stress to handle.  
-**But**, today MaterialFX is a great library, supported by many people and I'm proud of it.
-If you are using MaterialFX in your projects and feel like it, I recently
-activated [GitHub Sponsors](https://github.com/sponsors/palexdev) so
-you can easily donate/sponsor.
+This project is a fork of the original MaterialFX library created by Alessandro Parisi (palexdev).
 
-<!-- SUPPORTERS -->
+**Original Author:** Alessandro Parisi  
+**Original Repository:** https://github.com/palexdev/MaterialFX
 
-# Supporters:
-
-(If you want your github page to be linked here and you didn't specify your username in the donation, feel free to
-contact me by email and tell me. Also contact me if for some some reason you don't want to be listed here)
-
-- Alaa Abu Zidan
-- Alex Hawk
-- Aloento
-- brr53 
-- Eugen Gubin
-- Mauro de Wit
-- Mohammad Chaudhry (thank you very much for the huge donation, YOU are the legend)
-- Jtpatato21
-- Sourabh Bhat
-- stefanofornari (thank you very much for the big donation!)
-- Ultraviolet-Ninja
-- Yahia Rehab
-- Yiding He
-- *Your name can be here by supporting me at this link, [GitHub Sponsors](https://github.com/sponsors/palexdev)*
-
-Thank you very very much to all supporters, to all people who contribute to the project, to all people that thanked me,
-you really made my day
+We are grateful for the significant work and contributions made by the original author and all contributors to the MaterialFX project. This fork is maintained independently by logic-arts-official.
